@@ -825,6 +825,9 @@ var Fullpage = function (_React$Component) {
       global.document = global.window.document;
     }
 
+    // add activeHorizontalSlide option
+    var activeHorizontalSlide = p.activeHorizontalSlide || 0;
+
     var horizontalMap = {};
     // generate state for horizontals;
     var horizontals = slides.reduce(function (result, s, i) {
@@ -832,7 +835,8 @@ var Fullpage = function (_React$Component) {
 
 
       if (s.props.slides && name) {
-        result[name] = generateState(0);
+        // add activeHorizontalSlide option
+        result[name] = generateState(activeHorizontalSlide);
         horizontalMap[i] = name;
       }
 
@@ -1139,7 +1143,11 @@ var Fullpage = function (_React$Component) {
       this.ss = null;
 
       var window = this.state.window;
+      // window is not present on reload
 
+      if (!window) {
+        return;
+      }
 
       window.removeEventListener('resize', this.resize.bind(this));
       if (this.props.enableArrowKeys) {

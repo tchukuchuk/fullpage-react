@@ -945,7 +945,7 @@ var Fullpage = function (_React$Component) {
         touchSensitivity: this.touchSensitivity,
         scrollPreventDefault: true,
         touchPreventDefault: true,
-        scrollCb: this.onScrollAction,
+        scrollCb: null,
         touchCb: this.onScrollAction
       });
       this.ss = ss;
